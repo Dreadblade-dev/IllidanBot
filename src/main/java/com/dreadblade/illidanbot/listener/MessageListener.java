@@ -1,9 +1,10 @@
-package com.dreadblade.illidanbot;
+package com.dreadblade.illidanbot.listener;
 
-import net.dv8tion.jda.api.entities.TextChannel;
+import com.dreadblade.illidanbot.command.PingCommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -12,13 +13,17 @@ public class MessageListener extends ListenerAdapter {
     @Value("${discord.prefix}")
     private String prefix;
 
-    private static final String PING_COMMAND = "ping";
+    private PingCommand pingCommand;
+
+    @Autowired
+    public MessageListener(PingCommand pingCommand) {
+        this.pingCommand = pingCommand;
+    }
 
     @Override
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
-        if (event.getMessage().getContentRaw().startsWith(prefix + PING_COMMAND)) {
-            TextChannel channel = event.getChannel();
-            channel.sendMessage("Pong!").queue();
+        if (event.getMessage().getContentRaw().startsWith(prefix + pingCommand.getName())) {
+            pingCommand.execute(event);
         }
     }
 }
