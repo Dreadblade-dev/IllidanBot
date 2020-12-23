@@ -1,6 +1,6 @@
 package com.dreadblade.illidanbot.listener;
 
-import com.dreadblade.illidanbot.command.PingCommand;
+import com.dreadblade.illidanbot.command.common.PingCommand;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import org.jetbrains.annotations.NotNull;
