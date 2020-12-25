@@ -34,8 +34,4 @@ public class PingCommand extends AbstractCommand {
         return new MessageEmbed.Field(messageService.getMessage("discord.command.common.ping.field.title"),
                 messageService.getMessage("discord.command.common.ping.response", restPing, gatewayPing), true);
     }
-
-    public String getName() {
-        return messageService.getMessage("discord.command.common.ping.key");
-    }
 }

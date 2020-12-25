@@ -10,7 +10,7 @@ public class MessageConfig {
     @Bean
     public MessageSource messageSource() {
         var source = new ResourceBundleMessageSource();
-        source.addBasenames("common-messages");
+        source.addBasenames("common-messages", "jda-messages");
         return source;
     }
 }
